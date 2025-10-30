@@ -1,2 +1,3 @@
-# react-libary
+# react-library
+
 A personal library of react components and utilities...
