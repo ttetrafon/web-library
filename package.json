@@ -1,0 +1,32 @@
+{
+  "name": "ttetrafon-web-library",
+  "version": "0.0.0",
+  "private": true,
+  "description": "A personal library of web components and utilities.",
+  "homepage": "https://github.com/ttetrafon/web-library#readme",
+  "bugs": {
+    "url": "https://github.com/ttetrafon/web-library/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ttetrafon/web-library.git"
+  },
+  "author": "ttetrafon",
+  "packageManager": "pnpm@10.16.1",
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "clean": "turbo run clean",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "turbo run build && changeset publish"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": ["esbuild"]
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.29.8",
+    "turbo": "^2.8.3"
+  }
+}
