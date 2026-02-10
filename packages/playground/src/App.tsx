@@ -7,7 +7,7 @@ export default function App() {
       {/* <h1>Component Playground</h1>
       <p>Use this app to develop and test your components.</p> */}
 
-      <MarkdownEditor editable={true}></MarkdownEditor>
+      <MarkdownEditor editable={true} editRows={25}></MarkdownEditor>
     </div>
   );
 }

@@ -1,15 +1,19 @@
+import { useRef } from "react";
 import { MkButton } from "./MkButton";
 import { MkToolbarSeparator } from "./MkToolbarSeparator";
+import { convertMkToHtml } from "../../util/MkScripts";
 
 export interface MarkdownEditorProps {
-  editable: boolean
+  editable: boolean,
+  editRows?: number,
 }
 
-export function MarkdownEditor(props: MarkdownEditorProps) {
+export function MarkdownEditor({ editRows = 10, ...props }: MarkdownEditorProps) {
+  const renderRef = useRef<HTMLDivElement>(null);
   return (
-    <article className="flex flex-row flex-nowrap w-full">
-      {props.editable && <section id="markdown" className="flex-1 max-w-1/2">
-        <div id="toolbar" className="flex flex-row">
+    <section className="flex flex-row flex-nowrap gap-4 w-full">
+      {props.editable && <div id="markdown" className="flex-1 max-w-1/2">
+        <div className="flex flex-row gap-1 w-full">
           <MkButton text="Heading 1" icon="h1" />
           <MkButton text="Heading 2" icon="h2" />
           <MkButton text="Heading 3" icon="h3" />
@@ -32,11 +36,23 @@ export function MarkdownEditor(props: MarkdownEditorProps) {
           <MkButton text="Decrease Indent" icon="format_intent_decrease" />
           <MkButton text="Increase Indent" icon="format_indent_increase" />
         </div>
-        <div>Markdown!!!</div>
-      </section>}
-      <section id="render" className="flex-1 max-w-1/2">
-        Render!!!
-      </section>
-    </article>
+        <textarea
+          className="w-full shadow-md p-2 rounded-md"
+          rows={editRows}
+          onBlur={(e) => { if (renderRef.current) convertMkToHtml(e.target.value, renderRef.current); }}
+        >
+          Markdown!!!
+        </textarea>
+        <div className="flex flex-row w-full">
+          {/* TODO: general editor controls, like emitting events to the app and controlling local state */}
+        </div>
+      </div>}
+      <div className="flex-1 max-w-1/2 p-2">
+        {props.editable && <div className="flex flex-row w-full">
+          {/* TODO: controls for when this is editable! */}
+        </div>}
+        <div id="render" ref={renderRef}>Render!!!</div>
+      </div>
+    </section>
   );
 }

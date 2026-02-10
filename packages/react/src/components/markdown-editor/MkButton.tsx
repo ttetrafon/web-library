@@ -7,7 +7,7 @@ export interface MkButtonProps {
 
 export function MkButton({ text, icon }: MkButtonProps) {
   return (
-    <button title={text} className="p-1 size-8 cursor-pointer">
+    <button title={text} className="p-1 size-8 cursor-pointer shadow-md rounded-sm">
       <Svg name={icon} />
     </button>
   );
